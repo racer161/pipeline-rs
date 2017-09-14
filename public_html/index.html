@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>PipeText Non-contentEditable WYSIWYG Editor</title>
+
+    <meta name="viewport" content="width=device-width, user-scalable=no,initial-scale=1, maximum-scale=1">
+      
+    <!-- Load Styles -->
+    <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">
+    <link href="/scripts/pipe.css" rel="stylesheet">
+    
+    <script src="/scripts/pipeText/ot.js"></script>
+    <script src="/scripts/pipeText/pipeFrame.js"></script>
+    <script src="/scripts/pipeText/pipeSheet.js"></script>
+    <script src="/scripts/pipeText/input.js"></script>
+    <script src="/scripts/pipeText/cursor.js"></script>
+    <script src="/scripts/pipeText/fontMetrics.js"></script>
+  </head>
+  <body>
+      
+      
+    <script>
+        
+        var pri = Math.floor(Math.random() * 0x1000000);
+        var ser = 0;
+        function getid() 
+        {
+            return (pri * 0x100000) + ser++;
+        }
+        
+        var getRequest = function(path)
+        {
+            var body = 
+                {
+                    "event" : "GET",
+                    "body" : path
+                }
+            
+            return JSON.stringify(body);
+        }
+        
+        var webSocket = new WebSocket("ws://localhost:3012");
+        webSocket.onopen = function (event) {
+            console.log(event);
+            webSocket.send(getRequest("/root/"));
+            console.log("hello get request");
+        };
+        
+        // Listen for messages
+        webSocket.addEventListener('message', function (event) {
+            console.log('Message from server ', JSON.parse(event.data));
+        });
+        
+    </script>
+      
+  </body>
+</html>

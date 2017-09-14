@@ -1,0 +1,16 @@
+[package]
+name = "pipeline-rs"
+version = "0.1.0"
+authors = ["Ethan"]
+
+[dependencies]
+ws = "*"
+staticfile = "*"
+serde_json = "*"
+
+[dependencies.iron]
+version = "*"
+
+[dependencies.mount]
+git = "https://github.com/iron/mount.git"
+
