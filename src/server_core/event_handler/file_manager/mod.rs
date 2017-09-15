@@ -8,15 +8,6 @@ use std::vec::Vec;
 
 mod ot;
 
-fn init(rootPath : String) {
-    let root_dir = Path::new(&rootPath);
-    /*
-    match read_filenames_from_dir(root_dir)
-    {
-        Err(e) => println!("Error reading root Dir : {}", e ),
-        Ok(result) => build_dir_tree(result) 
-    }*/
-}
 
 pub fn get_dir(stringPath : &str) -> Result<Value, io::Error>
 {
